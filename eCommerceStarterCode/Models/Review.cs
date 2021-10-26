@@ -8,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace eCommerceStarterCode.Models
 {
-    public class ShoppingCart
+    public class Review
     {
         [Key]
-        public int ShoppingCartId { get; set; }
+        
+        public int ReviewId { get; set; }
         [ForeignKey("AspNetUsers")]
-        public int UserId { get; set; }
+        public int Id { get; set; }
         public User User { get; set; }
+
         [ForeignKey("Product")]
         public int ProductId { get; set; }
         public Product Product { get; set; }
-        public int Quantity { get; set; }
+        public string Body { get; set; }
     }
 }

@@ -16,17 +16,17 @@ namespace eCommerceStarterCode.Data
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-
+        public DbSet<Review> Reviews { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Product>()
-                .HasData(new Product { Id = 1, ProductName = "The Old Man and The Sea", ProductDescription = "By: Ernest Hemmingway", Genre = "Fiction", Price = 15}
+                .HasData(new Product { ProductId = 1, ProductName = "The Old Man and The Sea", ProductDescription = "By: Ernest Hemmingway", Genre = "Fiction", Price = 15}
                 );
             modelBuilder.Entity<ShoppingCart>();
-
+            modelBuilder.Entity<Review>();
 
             modelBuilder.ApplyConfiguration(new RolesConfiguration());
         }
