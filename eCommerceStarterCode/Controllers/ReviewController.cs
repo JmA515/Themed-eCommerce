@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace eCommerceStarterCode.Controllers
 {
-    [Route("api/review/")]
+    [Route("api/review/{ProductId}")]
     [ApiController]
     public class ReviewController : Controller
     {
@@ -20,27 +20,31 @@ namespace eCommerceStarterCode.Controllers
         {
             _context = context;
         }
-        
-        //Get all reviews
-        [HttpGet]
-        public IActionResult GetAllReviews()
-        {
-            var reviews = _context.Reviews;
-            return Ok(reviews);
-        }
 
-        //Get api/review/{productId}
-        [HttpGet("{productId")]
-        public IActionResult GetProductReviews(int productId)
+        // Get api/review/{ProductId}
+        [HttpGet]
+        public IActionResult GetAllReviews(int productId)
         {
+
             var reviews = _context.Reviews.Where(r => r.ProductId == productId).ToList();
             return Ok(reviews);
         }
 
-        //Post api/review/
-        [HttpPost]
-        public IActionResult PostReview([FromBody]Review review)
+        //Get api/review/{ProductId}/{reviewId}
+        [HttpGet("{reviewId}")]
+        public IActionResult GetProductReviews(int reviewId)
         {
+            var reviews = _context.Reviews.Where(r => r.ProductId == reviewId).ToList();
+            return Ok(reviews);
+        }
+
+        //Post api/review/{ProductId}
+        [HttpPost]
+        public IActionResult PostReview(int productId, [FromBody]Review review)
+        {
+            var reviews = _context.Reviews.Where(r => r.ProductId == productId);
+            //int productId = HttpContext.Session.GetInt32("{productId}");
+            //new Review.productId = (int)productId;
             _context.Reviews.Add(review);
             _context.SaveChanges();
             return StatusCode(201, review);

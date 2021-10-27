@@ -40,7 +40,7 @@ namespace eCommerceStarterCode.Controllers
             return Ok(selectedbook);
         }
 
-        //Post api/products/
+        //Post api/products
         [HttpPost]
         public IActionResult PostProduct([FromBody] Product newProduct)
         {
