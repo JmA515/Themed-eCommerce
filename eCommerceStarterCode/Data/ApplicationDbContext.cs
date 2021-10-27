@@ -23,10 +23,10 @@ namespace eCommerceStarterCode.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Product>()
-                .HasData(new Product { ProductId = 1, ProductName = "The Old Man and The Sea", ProductDescription = "By: Ernest Hemmingway", Genre = "Fiction", Price = 15}
+                .HasData(new Product { Id = 1, ProductName = "The Old Man and The Sea", ProductDescription = "By: Ernest Hemmingway", Genre = "Fiction", Price = 15}
                 );
-            modelBuilder.Entity<ShoppingCart>();
-            modelBuilder.Entity<Review>();
+            modelBuilder.Entity<ShoppingCart>()
+                .HasKey(sc => new { sc.UserId, sc.ProductId });            
 
             modelBuilder.ApplyConfiguration(new RolesConfiguration());
         }

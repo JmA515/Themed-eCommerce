@@ -1,4 +1,5 @@
 ﻿using eCommerceStarterCode.Data;
+using eCommerceStarterCode.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,23 +21,64 @@ namespace eCommerceStarterCode.Controllers
         {
             _context = context;
         }
+
         // <baseurl>/api/products
         [HttpGet]
-        public IActionResult GetProduct()
+        public IActionResult GetAllProducts()
         {
             var books = _context.Products;
             return Ok(books);
         }
 
-        // <baseurl>/api/products
+        // <baseurl>/api/products/{productId}
         [HttpGet("{productId}")]
         public IActionResult GetProductById(int productId)
         {
-            var books = _context.Products
-                .Where(p => p.ProductId == productId)
+            var selectedbook = _context.Products
+                .Where(p => p.Id == productId)
                 .SingleOrDefault();
-            return Ok(books);
+            return Ok(selectedbook);
         }
+
+        //Post api/products/
+        [HttpPost]
+        public IActionResult PostProduct([FromBody] Product newProduct)
+        {
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
+            return StatusCode(201, newProduct);
+        }
+
+        //PUT api/products/edit/{productId}
+        [HttpPut("edit/{productId}")]
+        public IActionResult UpdateProduct(int productId, [FromBody] Product value)
+        {
+            var book = _context.Products.Where(b => b.Id == productId).SingleOrDefault();
+            if(book == null)
+            {
+                return NotFound("Requested book not found");
+            }
+            book.ProductName =  value.ProductName;
+            book.ProductDescription = value.ProductDescription;
+            book.Price = value.Price;
+            book.Genre = value.Genre;
+
+            _context.Products.Update(book);
+            _context.SaveChanges();
+            return StatusCode(201, book);
+
+        }
+
+        //Delete api/products/delete/{productId}
+        [HttpDelete("delete/{productId}")]
+        public IActionResult DeleteProduct(int productId)
+        {
+            Product product = _context.Products.Where(b => b.Id == productId).SingleOrDefault();
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+            return Ok(product);
+        }
+
     }
 
 
