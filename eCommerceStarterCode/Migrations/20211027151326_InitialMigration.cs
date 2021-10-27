@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace eCommerceStarterCode.Migrations
 {
-    public partial class ReviewTable : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -219,12 +219,12 @@ namespace eCommerceStarterCode.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "98bea7be-21a9-4f34-a47b-bb2b38fa1c24", "57c3ad66-c793-42b2-91a0-0dd22a4a80ac", "User", "USER" });
+                values: new object[] { "32147682-eeb8-4dc2-aad5-a0cf01a69b97", "3284583a-2dce-418b-a50d-f3c25d916980", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "01504ff0-ef36-42c2-8328-de6f3e5c7704", "39ccc45e-0f59-4e4b-99e3-453daa062685", "Admin", "ADMIN" });
+                values: new object[] { "c62ef01f-cf50-4ccf-9760-c954589c63dc", "f76cd2d1-c20f-44e2-915e-c06cfbf7e46d", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "Products",
