@@ -40,11 +40,8 @@ namespace eCommerceStarterCode.Controllers
 
         //Post api/review/{ProductId}
         [HttpPost]
-        public IActionResult PostReview(int productId, [FromBody]Review review)
+        public IActionResult PostReview([FromBody]Review review)
         {
-            var reviews = _context.Reviews.Where(r => r.ProductId == productId);
-            //int productId = HttpContext.Session.GetInt32("{productId}");
-            //new Review.productId = (int)productId;
             _context.Reviews.Add(review);
             _context.SaveChanges();
             return StatusCode(201, review);
