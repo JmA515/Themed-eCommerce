@@ -32,8 +32,8 @@ namespace eCommerceStarterCode.Controllers
             }
 
             var userCart = _context.ShoppingCarts.Where(uc => uc.UserId == userId)
-                .Include(uc => uc.Product)
-                .Select(uc => new { uc.UserId, uc.ProductId, uc.Product.ProductName, uc.Product.ProductDescription, uc.Quantity, uc.Product.ProductPrice, ExtPrice = uc.Quantity * uc.Product.ProductPrice })
+                .Include(c => c.Product)
+                .Select(c => new { c.UserId, c.ProductId, c.Product.ProductName, c.Product.ProductDescription, c.Quantity, c.Product.Price, ExtPrice = c.Quantity * c.Product.Price })
                 .ToList();
             return Ok(userCart);
         }
@@ -87,7 +87,7 @@ namespace eCommerceStarterCode.Controllers
                 return NotFound("User not found");
             }
 
-            var chosenObject = _context.ShoppingCarts.Where(sc => (sc.UserId == userId && sc.ProductId == productId)).SingleOrDefault();
+            var chosenObject = _context.ShoppingCarts.Where(co => (co.UserId == userId && co.ProductId == productId)).SingleOrDefault();
             if (chosenObject != null)
             {
                 chosenObject.Quantity = chosenObject.Quantity + value.Quantity;
