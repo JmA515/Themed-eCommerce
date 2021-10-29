@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace eCommerceStarterCode.Controllers
 {
-    [Route("api/review/{ProductId}")]
+    [Route("api/review")]
     [ApiController]
     public class ReviewController : Controller
     {
