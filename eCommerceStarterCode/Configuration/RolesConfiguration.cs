@@ -19,6 +19,16 @@ namespace eCommerceStarterCode.Configuration
                 {
                     Name = "Admin",
                     NormalizedName = "ADMIN"
+                },
+                new IdentityRole
+                {
+                    Name = "Buyer",
+                    NormalizedName = "BUYER"
+                },
+                new IdentityRole
+                {
+                    Name = "Seller",
+                    NormalizedName = "SELLER"
                 }
             );
         }
