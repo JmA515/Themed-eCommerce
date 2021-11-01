@@ -21,7 +21,7 @@ namespace eCommerceStarterCode.Controllers
         {
             _context = context;
         }
-        [HttpGet(), Authorize]
+        [HttpGet()]
         public IActionResult GetCurrentUserCart()
         {
             var userId = User.FindFirstValue("id");
@@ -38,7 +38,7 @@ namespace eCommerceStarterCode.Controllers
             return Ok(userCart);
         }
 
-        [HttpGet("count"), Authorize]
+        [HttpGet("count")]
         public IActionResult GetItemCount()
         {
             var userId = User.FindFirstValue("id");
@@ -57,7 +57,7 @@ namespace eCommerceStarterCode.Controllers
 
         }
 
-        [HttpPut("{productId}"), Authorize]
+        [HttpPut("{productId}")]
 
         public IActionResult Put(int productId, [FromBody] ShoppingCart value)
         {
@@ -76,7 +76,7 @@ namespace eCommerceStarterCode.Controllers
 
         }
 
-        [HttpPost("{productId}"), Authorize]
+        [HttpPost("{productId}")]
 
         public IActionResult Post(int productId, [FromBody] ShoppingCart value)
         {
@@ -101,7 +101,7 @@ namespace eCommerceStarterCode.Controllers
             return StatusCode(201, chosenObject);
         }
 
-        [HttpDelete("{productId}"), Authorize]
+        [HttpDelete("{productId}")]
         public IActionResult Delete(int productId)
         {
             var userId = User.FindFirstValue("id");
